@@ -1,3 +1,5 @@
+package advent_of_code;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -8,17 +10,21 @@ import java.util.stream.Collectors;
 
 public class DayOne2019 {
     // Solution to https://adventofcode.com/2019/day/1
-    public static void main(String[] args) {
+    public Integer partOne() {
         // Part one
         final List<Integer> moduleMasses = getModuleMasses();
         final List<Integer> fuelRequirements = getFuelRequirements(moduleMasses);
-        final Integer totalModuleFuelRequirement = sumFuelRequirements(fuelRequirements);
-        System.out.println("Part one solution: " + totalModuleFuelRequirement);
+        return sumFuelRequirements(fuelRequirements);
+    }
 
+    public Integer partTwo() {
         // Part two
-        Integer totalFuelRequirement = totalModuleFuelRequirement;
+        final List<Integer> moduleMasses = getModuleMasses();
+        final List<Integer> fuelRequirements = getFuelRequirements(moduleMasses);
+
+        Integer totalFuelRequirement = sumFuelRequirements(fuelRequirements);
         totalFuelRequirement += calculateFuelFuelRequirements(fuelRequirements);
-        System.out.println("Part two solution: " + totalFuelRequirement);
+        return totalFuelRequirement;
     }
 
     private static Integer calculateFuelFuelRequirements(List<Integer> fuelMass) {
@@ -44,7 +50,7 @@ public class DayOne2019 {
             return Files.lines(Path.of("inputs\\day_one_input")).mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();
-            return new ArrayList<Integer>();
+            return new ArrayList<>();
         }
     }
 }
